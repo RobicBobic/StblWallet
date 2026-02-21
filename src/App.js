@@ -371,15 +371,6 @@ function TokenLogo({ symbol, size = 22, className = '' }) {
 const CA_ADDRESS = '7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU';
 
 function CABar() {
-  const [copied, setCopied] = useState(false);
-
-  const copy = () => {
-    navigator.clipboard.writeText(CA_ADDRESS).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
-
   return (
     <div className="ca-bar">
       <span className="ca-bar__label">CA:</span>
