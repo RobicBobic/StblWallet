@@ -500,8 +500,7 @@ function TokenSelect({ value, onChange, exclude, disabled }) {
   );
 }
 
-function CryptoConverter() {
-  const { wallet, connecting, error: walletErr, connect, disconnect } = usePhantom();
+function CryptoConverter({ wallet, connecting, error: walletErr, connect, disconnect }) {
   const { prices } = useLivePrices();
 
   const [from, setFrom] = useState('SOL');
@@ -736,8 +735,7 @@ function CryptoConverter() {
 /* ═══════════════════════════════════════════════════════
    NAVBAR
 ═══════════════════════════════════════════════════════ */
-function Navbar() {
-  const { wallet, connecting, connect, disconnect } = usePhantom();
+function Navbar({ wallet, connecting, connect, disconnect }) {
 
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
@@ -1273,10 +1271,16 @@ function Footer() {
    APP ROOT
 ═══════════════════════════════════════════════════════ */
 export default function App() {
+  const phantomProps = usePhantom();
   return (
     <>
       <GlobalStarField />
-      <Navbar />
+      <Navbar
+        wallet={phantomProps.wallet}
+        connecting={phantomProps.connecting}
+        connect={phantomProps.connect}
+        disconnect={phantomProps.disconnect}
+      />
       <PriceTicker />
       <CABar />
       <main>
@@ -1284,7 +1288,13 @@ export default function App() {
         <StatsBar />
         <GlobalLiquidity />
         <CheckoutFlow />
-        <CryptoConverter />
+        <CryptoConverter
+          wallet={phantomProps.wallet}
+          connecting={phantomProps.connecting}
+          error={phantomProps.error}
+          connect={phantomProps.connect}
+          disconnect={phantomProps.disconnect}
+        />
         <TryCheckout />
         <InPerson />
         <Developers />
