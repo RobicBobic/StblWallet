@@ -368,8 +368,6 @@ function TokenLogo({ symbol, size = 22, className = '' }) {
 /* ═══════════════════════════════════════════════════════
    CONTRACT ADDRESS BAR
 ═══════════════════════════════════════════════════════ */
-const CA_ADDRESS = '7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU';
-
 function CABar() {
   return (
     <div className="ca-bar">
